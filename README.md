@@ -7,6 +7,15 @@ Change:
     DB_DATABASE=app_base
     DB_USERNAME=root
     DB_PASSWORD=root
+npm i
+composer update
+mkdir cert
+cd cert
+mkcert -key-file ssl.key -cert-file ssl.crt test-server.local
+cp $(mkcert -CAROOT)/rootCA.pem ./ca.crt
+
+docker-compose up --build
+
 sudo chmod -R 777 storage 
 docker exec -it app bash -> php artisan migrate && php artisan key:gen
 
