@@ -9,7 +9,7 @@ Change:
     DB_PASSWORD=root
 npm i <br>
 composer update <br>
-mkdir cert <br>
+mkdir docker/nginx/cert <br>
 cd cert <br>
 mkcert -key-file ssl.key -cert-file ssl.crt test-server.local <br>
 cp $(mkcert -CAROOT)/rootCA.pem ./ca.crt <br>
