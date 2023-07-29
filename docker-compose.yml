@@ -1,0 +1,59 @@
+version: '3.9'
+
+services:
+  nginx:
+    build: 
+      dockerfile: ./docker/nginx/Dockerfile
+    ports:
+      - 8080:80
+      - 443:443
+    volumes:
+      - ./:/var/www/
+      - ./docker/nginx/conf.d/:/etc/nginx/conf.d
+      # - ./docker/nginx/cert/:/etc/nginx/certs
+    container_name: nginx
+    depends_on:
+      - app
+
+  app:
+    build:
+      context: .
+      dockerfile: docker/app/Dockerfile
+    ports:
+      - 9000:9000
+    volumes:
+      - ./:/var/www/
+    depends_on:
+      - mysql
+    container_name: app
+  
+  mysql:
+    image: mysql:8.0
+    restart: always
+    volumes:
+      - ./tmp/db:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: app_base
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - 8101:3306
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
+    container_name: mysql
+  
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: pma
+    links:
+      - mysql
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+    ports:
+      - 8081:80
+
+
+
+
+
+
+      
