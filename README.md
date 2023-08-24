@@ -18,6 +18,7 @@ docker-compose up --build <br>
 
 sudo chmod -R 777 storage  <br>
 docker exec -it app bash -> php artisan migrate && php artisan key:gen <br>
+sudo nano /etc/hosts and add next to local host your domain
 
 
 
