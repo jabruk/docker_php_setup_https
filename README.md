@@ -16,9 +16,9 @@ cp $(mkcert -CAROOT)/rootCA.pem ./ca.crt <br>
 if 403 -> change www-data in nginx dockerfile on another name of relustps -aux |grep nginx <br>
 docker-compose up --build <br>
 
-sudo chmod -R 777 storage  <br>
 docker exec -it app bash -> php artisan migrate && php artisan key:gen <br>
 sudo nano /etc/hosts and add next to local host your domain
+in app container find /var/www -type d -exec chmod 0775 '{}' \;
 
 
 
