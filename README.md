@@ -18,7 +18,7 @@ docker-compose up --build <br>
 
 docker exec -it app bash -> php artisan migrate && php artisan key:gen <br>
 sudo nano /etc/hosts and add next to local host your domain
-in app container find /var/www -type d -exec chmod 0775 '{}' \;
+in app container find /var/www -type d -exec chmod 0775 '{}' \\;
 
 
 
