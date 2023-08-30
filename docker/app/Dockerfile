@@ -24,6 +24,12 @@ COPY ./docker/app/php.ini /usr/local/etc/php/conf.d/php.ini
 #     --install-dir=/usr/local/bin
 # Install composer:
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
+
+#Install npm
+RUN apt-get update && apt-get upgrade -y && \
+    apt-get install -y nodejs \
+    npm 
+    
 RUN usermod -u 1000 www-data && groupmod -g 1000 www-data
 
 
