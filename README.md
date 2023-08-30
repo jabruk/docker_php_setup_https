@@ -10,7 +10,7 @@ Change:
 npm i <br>
 composer update <br>
 mkdir docker/nginx/cert <br>
-cd cert <br>
+cd docker/nginx/cert <br>
 mkcert -key-file ssl.key -cert-file ssl.crt test-server.local <br>
 cp $(mkcert -CAROOT)/rootCA.pem ./ca.crt <br>
 if 403 -> change www-data in nginx dockerfile on another name of relustps -aux |grep nginx <br>
